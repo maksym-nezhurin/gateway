@@ -22,7 +22,8 @@ Backend API Gateway for Microservices Architecture
 - `/notify/:type` — проксі до notification-сервісу (захищено Keycloak)
 - `/cars` — тестовий захищений маршрут (повертає мокові дані)
 
-## Запуск# Gateway
+## Запуск
+# Gateway
 
 Backend API Gateway for Microservices Architecture
 
@@ -45,3 +46,7 @@ Backend API Gateway for Microservices Architecture
 - `/user` — проксі до user-сервісу
 - `/notify/:type` — проксі до notification-сервісу (захищено Keycloak)
 - `/cars` — тестовий захищений маршрут (повертає мокові дані)
+
+## Важливо
+
+- **Доданий функціонал** semantic-releases
