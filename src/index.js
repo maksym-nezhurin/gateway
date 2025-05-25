@@ -58,7 +58,7 @@ app.use('/auth', createProxyMiddleware({
   target: 'http://auth-service:3001',
   changeOrigin: true,
   pathRewrite: {
-    '^/auth': '/api/token',
+    '^/auth': '/api/auth',
   }
 }));
 
@@ -67,7 +67,7 @@ app.use('/verify', createProxyMiddleware({
   target: 'http://auth-service:3001',
   changeOrigin: true,
   pathRewrite: {
-    '^/verify': '/api/verify',
+    '^/verify': '/api/auth/verify',
   },
   onProxyReq: (proxyReq, req, res) => {
     proxyReq.method = req.method;
