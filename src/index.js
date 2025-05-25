@@ -100,6 +100,14 @@ app.use('/cars', keycloak.protect(), (req, res) => {
       type: 'A6',
       engine: '2.5',
       complectation: 'luxury'
+    },
+    {
+      id: '1232-1234',
+      ownerId: '1234-5678-9101',
+      model: 'Toyota',
+      type: 'Camry',
+      engine: '2.5',
+      complectation: 'standard'
     }
   ];
   return res.json({ message: 'User data accessed', data });
