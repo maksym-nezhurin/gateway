@@ -23,6 +23,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Configure Git user
+        run: |
+          git config --global user.name "semantic-release-bot"
+          git config --global user.email "semantic-release@users.noreply.github.com"
+
+      - name: Set up authentication
+        run: |
+          git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
+
       - name: Run release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
