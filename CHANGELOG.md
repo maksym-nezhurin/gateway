@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/maksym-nezhurin/gateway/compare/v1.0.0...v1.0.1) (2025-05-25)
+
+
+### Bug Fixes
+
+* added a new car ([8debeb6](https://github.com/maksym-nezhurin/gateway/commit/8debeb6532cc876d07cca5b880fea54b06b1e54c))
+
 # 1.0.0 (2025-05-25)
 
 
