@@ -8,13 +8,6 @@ const Keycloak = require('keycloak-connect');
 const app = express();
 const port = 3000;
 
-console.log('Gateway Environment:', {
-  clientId: process.env.KEYCLOAK_CLIENT_ID,
-  serverUrl: process.env.KEYCLOAK_SERVER_URL,
-  realm: process.env.KEYCLOAK_REALM_NAME,
-  secret: process.env.KEYCLOAK_CLIENT_SECRET,
-});
-
 const keycloakConfig = {
   clientId: process.env.KEYCLOAK_CLIENT_ID,
   bearerOnly: false,
@@ -53,7 +46,6 @@ app.get('/', (req, res) => {
 }
 );
 
-// Проксі до auth-сервісу
 app.use('/auth', createProxyMiddleware({
   target: 'http://auth-service:3001',
   changeOrigin: true,
@@ -62,7 +54,6 @@ app.use('/auth', createProxyMiddleware({
   }
 }));
 
-// Проксі для верифікації токена
 app.use('/verify', createProxyMiddleware({
   target: 'http://auth-service:3001',
   changeOrigin: true,
@@ -74,44 +65,36 @@ app.use('/verify', createProxyMiddleware({
   }
 }));
 
-// Проксі до cars-сервісу (placeholder for actual service)
-app.use('/cars', keycloak.protect(), (req, res) => {
-  const data = [
-    {
-      id: '1232-1231',
-      ownerId: '1234-5678-9101',
-      model: 'Volvo',
-      type: 'SX50',
-      engine: '2.0',
-      complectation: 'basic'
-    },
-    {
-      id: '1232-1232',
-      ownerId: '1234-5678-9101',
-      model: 'BMW',
-      type: 'X5',
-      engine: '3.0',
-      complectation: 'premium'
-    },
-    {
-      id: '1232-1233',
-      ownerId: '1234-5678-9101',
-      model: 'Audi',
-      type: 'A6',
-      engine: '2.5',
-      complectation: 'luxury'
-    },
-    {
-      id: '1232-1234',
-      ownerId: '1234-5678-9101',
-      model: 'Toyota',
-      type: 'Camry',
-      engine: '2.5',
-      complectation: 'standard'
+app.use('/cars/characteristics', createProxyMiddleware({
+  target: 'http://car-service:3002',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/cars/characteristics/brands': '/api/brands',
+    '^/cars/characteristics/models': '/api/models',
+    '^/cars/characteristics/variants': '/api/variants',
+  },
+  onProxyReq: (proxyReq, req) => {
+    proxyReq.method = req.method;
+  }
+}));
+
+app.use('/cars', keycloak.protect(), (req, res, next) => {
+  const user = req.kauth?.grant?.access_token?.content;
+  req.userId = user?.sub;
+  next();
+}, createProxyMiddleware({
+  target: 'http://car-service:3002',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/cars': '/api/cars',
+  },
+  onProxyReq: (proxyReq, req, res) => {
+    proxyReq.method = req.method;
+    if (req.userId) {
+      proxyReq.setHeader('x-user-id', req.userId);
     }
-  ];
-  return res.json({ message: 'User data accessed', data });
-})
+  }
+}));
 
 app.listen(port, () => {
   console.log(`Gateway running at http://localhost:${port}`);
