@@ -7,6 +7,8 @@ const Keycloak = require('keycloak-connect');
 
 const app = express();
 const port = process.env.PORT;
+const authTarget = process.env.AUTH_SERVICE_URL;
+const carTarget = process.env.CAR_SERVICE_URL;
 
 const keycloakConfig = {
   clientId: process.env.KEYCLOAK_CLIENT_ID,
@@ -47,7 +49,7 @@ app.get('/', (req, res) => {
 );
 
 app.use('/auth', createProxyMiddleware({
-  target: 'http://auth-service:3001',
+  target: authTarget,
   changeOrigin: true,
   pathRewrite: {
     '^/auth': '/api/auth',
@@ -55,7 +57,7 @@ app.use('/auth', createProxyMiddleware({
 }));
 
 app.use('/verify', createProxyMiddleware({
-  target: 'http://auth-service:3001',
+  target: authTarget,
   changeOrigin: true,
   pathRewrite: {
     '^/verify': '/api/auth/verify',
@@ -66,7 +68,7 @@ app.use('/verify', createProxyMiddleware({
 }));
 
 app.use('/cars/characteristics', createProxyMiddleware({
-  target: 'http://car-service:3002',
+  target: carTarget,
   changeOrigin: true,
   pathRewrite: {
     '^/cars/characteristics/brands': '/api/brands',
@@ -82,7 +84,7 @@ app.get('/cars', (req, res, next) => {
   console.log('get cars');
   next();
 }, createProxyMiddleware({
-  target: 'http://car-service:3002',
+  target: carTarget,
   changeOrigin: true,
   pathRewrite: {
     '^/cars': '/api/cars',
@@ -93,7 +95,7 @@ app.get('/cars/:id', (req, res, next) => {
   console.log(`get car by id: ${req.params.id}`);
   next();
 }, createProxyMiddleware({
-  target: 'http://car-service:3002',
+  target: carTarget,
   changeOrigin: true,
   pathRewrite: {
     '^/cars': '/api/cars',
@@ -105,7 +107,7 @@ app.use('/cars', keycloak.protect(), (req, res, next) => {
   req.userId = user?.sub;
   next();
 }, createProxyMiddleware({
-  target: 'http://car-service:3002',
+  target: carTarget,
   changeOrigin: true,
   pathRewrite: {
     '^/cars': '/api/cars',
@@ -118,7 +120,7 @@ app.use('/cars', keycloak.protect(), (req, res, next) => {
   }
 }));
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Gateway running at ${port}`);
 });
 

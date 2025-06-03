@@ -12,6 +12,7 @@ primary_region = 'waw'
   KEYCLOAK_CLIENT_ID = "api-client"
   KEYCLOAK_CLIENT_SECRET = "XVLTtJKNr7GSqrSGMvAMGwv3PMfN0NqW"
   PORT = "8080"
+  AUTH_SERVICE_URL="https://auth-service-still-silence-9406.fly.dev"
 
 [build]
   dockerfile = 'Dockerfile'
