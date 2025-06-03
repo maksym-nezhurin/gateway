@@ -11,6 +11,7 @@ primary_region = 'waw'
   KEYCLOAK_REALM = "general-auth"
   KEYCLOAK_CLIENT_ID = "api-client"
   KEYCLOAK_CLIENT_SECRET = "XVLTtJKNr7GSqrSGMvAMGwv3PMfN0NqW"
+  PORT = "8080"
 
 [build]
   dockerfile = 'Dockerfile'
