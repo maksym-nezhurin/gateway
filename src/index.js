@@ -6,7 +6,7 @@ const cors = require('cors');
 const Keycloak = require('keycloak-connect');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 const keycloakConfig = {
   clientId: process.env.KEYCLOAK_CLIENT_ID,
@@ -78,6 +78,28 @@ app.use('/cars/characteristics', createProxyMiddleware({
   }
 }));
 
+app.get('/cars', (req, res, next) => {
+  console.log('get cars');
+  next();
+}, createProxyMiddleware({
+  target: 'http://car-service:3002',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/cars': '/api/cars',
+  },
+}));
+
+app.get('/cars/:id', (req, res, next) => {
+  console.log(`get car by id: ${req.params.id}`);
+  next();
+}, createProxyMiddleware({
+  target: 'http://car-service:3002',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/cars': '/api/cars',
+  },
+}));
+
 app.use('/cars', keycloak.protect(), (req, res, next) => {
   const user = req.kauth?.grant?.access_token?.content;
   req.userId = user?.sub;
@@ -97,6 +119,6 @@ app.use('/cars', keycloak.protect(), (req, res, next) => {
 }));
 
 app.listen(port, () => {
-  console.log(`Gateway running at http://localhost:${port}`);
+  console.log(`Gateway running at ${port}`);
 });
 
