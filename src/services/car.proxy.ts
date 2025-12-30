@@ -1,8 +1,9 @@
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { ROUTES } from '../constants/routes';
+import { config } from '../config/env';
 
 export const carProxy = createProxyMiddleware({
-  target: process.env.CAR_SERVICE_URL,
+  target: config.carServiceUrl,
   changeOrigin: true,
   pathRewrite: { [`^${ROUTES.CARS}`]: '/api/cars' },
   onProxyReq: (proxyReq, req) => {

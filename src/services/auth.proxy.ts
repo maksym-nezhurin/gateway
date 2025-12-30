@@ -1,8 +1,9 @@
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { ROUTES } from '../constants/routes';
+import { config } from '../config/env';
 
 export const authProxy = createProxyMiddleware({
-  target: process.env.AUTH_SERVICE_URL,
+  target: config.authServiceUrl,
   changeOrigin: true,
   pathRewrite: { [`^${ROUTES.AUTH}`]: '/api/v1/auth' },
    onProxyReq: (proxyReq, req) => {
