@@ -7,12 +7,13 @@ app = 'gateway-dawn-wildflower-3519'
 primary_region = 'waw'
 
 [env]
-  KEYCLOAK_URL = "https://euc1.auth.ac/auth"
+  KEYCLOAK_URL = "https://euc1.auth.ac"
   KEYCLOAK_REALM = "general-auth"
   KEYCLOAK_CLIENT_ID = "api-client"
   KEYCLOAK_CLIENT_SECRET = "XVLTtJKNr7GSqrSGMvAMGwv3PMfN0NqW"
   PORT = "8080"
   AUTH_SERVICE_URL="https://auth-service-still-silence-9406.fly.dev"
+  CAR_SERVICE_URL="https://car-service.fly.dev/"
 
 [build]
   dockerfile = 'Dockerfile'

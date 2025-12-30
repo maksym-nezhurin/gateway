@@ -1,4 +1,10 @@
 .env
+.env.docker
+.env.development
 
 node_modules
 package-lock.json
+
+dist
+Dockerfile
+Dockerfile.dev

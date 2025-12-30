@@ -1,0 +1,57 @@
+
+> api-gateway@1.0.1 dev /Users/mac/Desktop/projects/may 2025/monorepo/services/gateway
+> nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src/**/*.ts[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node src/server.ts`[39m
+[HPM] Proxy created: /  -> http://localhost:3003
+[HPM] Proxy rewrite rule created: "^/v1/auth" ~> "/api/v1/auth"
+[HPM] Proxy created: /  -> http://localhost:3002
+[HPM] Proxy rewrite rule created: "^/v1/cars" ~> "/api/cars"
+Gateway running at http://localhost:3000
+AUTH_SERVICE_URL: http://localhost:3003
+CAR_SERVICE_URL: http://localhost:3002
+[HPM] Error occurred while proxying request localhost:3000/api/v1/auth/me to http://localhost:3003/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/v1/auth/me to http://localhost:3003/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[Gateway] Response from service: 201 for /v1/auth/login
+[Gateway] Response from service: 200 for /v1/auth/me
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 304 for /v1/auth/me
+[Gateway] Response from service: 401 for /v1/auth/me
+[Gateway] Response from service: 401 for /v1/auth/me
+[Gateway] Response from service: 401 for /v1/auth/me
+[Gateway] Response from service: 401 for /v1/auth/me
+[Gateway] Response from service: 201 for /v1/auth/login
+[Gateway] Response from service: 304 for /v1/auth/me
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars/my to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars/attributes to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars/my to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars/attributes to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars/my to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars/attributes to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars/my to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)
+[HPM] Error occurred while proxying request localhost:3000/api/cars/attributes to http://localhost:3002/ [ECONNREFUSED] (https://nodejs.org/api/errors.html#errors_common_system_errors)

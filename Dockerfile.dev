@@ -9,5 +9,5 @@ RUN corepack enable && corepack prepare pnpm@9.15.2 --activate && pnpm install
 
 COPY . .
 
-CMD ["pnpm", "start"]
+CMD ["pnpm", "dev"]
 
