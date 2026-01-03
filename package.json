@@ -6,7 +6,7 @@
     "start": "ts-node src/server.ts",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
     "build": "tsc",
-    "prepare": "pnpm install || exit 0",
+    "prepare": "echo skip prepare",
     "release": "semantic-release",
     "preinstall": "npx only-allow pnpm",
     "test": "echo \"No tests specified\" && exit 0"

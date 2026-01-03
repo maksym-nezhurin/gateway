@@ -1,9 +1,10 @@
 services:
   - type: web
-    name: gateway
-    env: node
-    buildCommand: pnpm install --frozen-lockfile && pnpm run build
-    startCommand: pnpm start
+    name: api-gateway
+    env: docker
+    dockerfilePath: ./Dockerfile
+    branch: master
+    plan: free
     envVars:
       - key: NODE_ENV
         value: production
