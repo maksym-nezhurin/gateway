@@ -11,7 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["node", "cors", "jsonwebtoken", "express"]
+    "types": ["node", "express"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
