@@ -8,3 +8,6 @@ package-lock.json
 dist
 Dockerfile
 Dockerfile.dev
+
+.turbo
+.turbo/
