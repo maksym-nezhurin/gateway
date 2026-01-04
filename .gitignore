@@ -9,5 +9,5 @@ dist
 Dockerfile
 Dockerfile.dev
 
-# .turbo
-# .turbo/
+.turbo
+.turbo/
