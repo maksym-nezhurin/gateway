@@ -4,7 +4,8 @@ export const corsOptions: CorsOptions = {
   origin: [
     'http://localhost:5173',                 // Frontend (Next.js)
     'http://localhost:3005',                 // React admin
-    'https://admin-liard-pi-71.vercel.app'  // Production admin
+    'https://admin-liard-pi-71.vercel.app',  // Production admin
+    'https://admin-reelo.vercel.app'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id'],
