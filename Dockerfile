@@ -1,33 +1,37 @@
-# Stage 1: Build
-FROM node:18 AS builder
+# ---------- Builder ----------
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy only package.json + lockfile
-COPY package.json package-lock.json* ./
+# 1. Увімкнути corepack (pnpm)
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Install dependencies
-RUN npm install
+# 2. Копіюємо тільки manifests
+COPY package.json pnpm-lock.yaml ./
 
-# Copy source code
+# 3. Встановлюємо залежності (dev потрібні)
+RUN pnpm install --frozen-lockfile
+
+# 4. Копіюємо код
 COPY . .
 
-# Compile TypeScript to JS
-RUN npm run build  # uses "build": "tsc"
+# 5. Білд (Nest / Express)
+RUN pnpm run build
 
-# Stage 2: Production image
-FROM node:18-alpine
+
+# ---------- Runtime ----------
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy only compiled JS + node_modules
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --prod --frozen-lockfile
+
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
 
 ENV NODE_ENV=production
-ENV PORT=3000
 EXPOSE 3000
 
-# Start the compiled JS
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/src/main.js"]
