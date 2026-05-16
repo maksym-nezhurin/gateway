@@ -1,9 +1,10 @@
-
-nginx
-./node_modules
+node_modules
 dist
+.env*
 .git
 .gitignore
+README.md
 Dockerfile*
-*.log
-
+.nyc_output
+coverage
+.turbo

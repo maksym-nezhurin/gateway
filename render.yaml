@@ -11,9 +11,9 @@ services:
       - key: PORT
         value: 3000
       - key: AUTH_SERVICE_URL
-        value: "https://auth-service-maksym.fly.dev"  # Replace with your auth service URL
+        value: "https://auth-service-still-silence-9406.fly.dev"
       - key: CAR_SERVICE_URL
-        value: "https://car-service.fly.dev"   # Replace with your car service URL
+        value: "https://car-service-jiwj.onrender.com"
       - key: JWT_SECRET
         value: "dev_access_secret"                    # Add your JWT secret
       - key: NODE_TLS_REJECT_UNAUTHORIZED
