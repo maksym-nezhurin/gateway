@@ -1,7 +1,8 @@
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { ROUTES } from '../constants/routes';
 import { config } from '../config/env';
 
+/** Nest authz (user-service): /api/v1/auth/* — matches admin `v1/auth/*` via gateway */
 export const authProxy = createProxyMiddleware({
   target: config.authServiceUrl,
   changeOrigin: true,
@@ -11,12 +12,7 @@ export const authProxy = createProxyMiddleware({
   timeout: 30_000,
   proxyTimeout: 30_000,
   onProxyReq: (proxyReq, req) => {
-    if (req.body) {
-      const bodyData = JSON.stringify(req.body);
-      proxyReq.setHeader('Content-Type', 'application/json');
-      proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
-      proxyReq.write(bodyData);
-    }
+    fixRequestBody(proxyReq, req);
   },
   onProxyRes: (proxyRes, req) => {
     console.log(

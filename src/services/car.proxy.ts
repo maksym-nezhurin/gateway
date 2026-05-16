@@ -1,4 +1,4 @@
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { ROUTES } from '../constants/routes';
 import { config } from '../config/env';
 
@@ -8,6 +8,9 @@ export const carProxy = createProxyMiddleware({
   pathRewrite: { [`^${ROUTES.CARS}`]: '/api/cars' },
   onProxyReq: (proxyReq, req) => {
     const userId = (req as any).userId;
-    if (userId) proxyReq.setHeader('x-user-id', userId);
+    if (userId && !proxyReq.headersSent) {
+      proxyReq.setHeader('x-user-id', userId);
+    }
+    fixRequestBody(proxyReq, req);
   },
 });
