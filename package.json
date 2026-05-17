@@ -1,6 +1,6 @@
 {
   "name": "api-gateway",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "packageManager": "pnpm@9.15.0",
   "main": "dist/server.js",
   "scripts": {

@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/maksym-nezhurin/gateway/compare/v1.0.3...v1.0.4) (2026-05-17)
+
+
+### Bug Fixes
+
+* **build:** install TypeScript and [@types](https://github.com/types) on Render production installs. ([0c50a6a](https://github.com/maksym-nezhurin/gateway/commit/0c50a6a5a6f2d9354ce0293a697622bf3fb2674b))
+
 ## [1.0.3](https://github.com/maksym-nezhurin/gateway/compare/v1.0.2...v1.0.3) (2026-05-17)
 
 
