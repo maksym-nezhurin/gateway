@@ -1,34 +1,30 @@
 # ---------- Builder ----------
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
-COPY package.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Install pnpm and dependencies
-RUN corepack enable && corepack prepare pnpm@latest --activate
-RUN pnpm install
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 
-# Copy source code
+# Render sets NODE_ENV=production globally; devDeps are required for `tsc`
+ENV NODE_ENV=development
+RUN pnpm install --frozen-lockfile
+
 COPY . .
 
-# Build the application
 RUN pnpm run build
 
 # ---------- Runtime ----------
-FROM node:20-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 
-# Copy package files
-COPY package.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Install pnpm and production dependencies only
-RUN corepack enable && corepack prepare pnpm@latest --activate
-RUN pnpm install --prod
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+RUN pnpm install --frozen-lockfile --prod
 
-# Copy built application
 COPY --from=builder /app/dist ./dist
 
 ENV NODE_ENV=production
