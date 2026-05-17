@@ -7,9 +7,8 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 
-# Render sets NODE_ENV=production globally; devDeps are required for `tsc`
-ENV NODE_ENV=development
-RUN pnpm install --frozen-lockfile
+# Render sets NODE_ENV=production; --dev ensures typescript/@types are installed for tsc
+RUN pnpm install --frozen-lockfile --dev
 
 COPY . .
 
