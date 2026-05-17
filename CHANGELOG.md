@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/maksym-nezhurin/gateway/compare/v1.0.2...v1.0.3) (2026-05-17)
+
+
+### Bug Fixes
+
+* **docker:** install devDependencies for tsc when NODE_ENV is production. ([07442c4](https://github.com/maksym-nezhurin/gateway/commit/07442c46de9802eccfc7c7d5814cf0161d851dfb))
+
 ## [1.0.2](https://github.com/maksym-nezhurin/gateway/compare/v1.0.1...v1.0.2) (2026-05-17)
 
 
