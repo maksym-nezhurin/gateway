@@ -4,7 +4,7 @@
   "packageManager": "pnpm@9.15.0",
   "main": "dist/server.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "node dist/server.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
     "build": "tsc",
     "prepare": "echo skip prepare",

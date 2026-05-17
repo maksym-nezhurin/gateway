@@ -1,11 +1,10 @@
 services:
   - type: web
     name: api-gateway
-    env: docker
-    dockerfilePath: ./Dockerfile
+    runtime: node
     branch: master
-    buildCommand: pnpm install --frozen-lockfile --dev && pnpm run build
-    startCommand: node dist/server.js
+    buildCommand: pnpm install --frozen-lockfile && pnpm run build
+    startCommand: pnpm start
     plan: free
     envVars:
       - key: NODE_ENV
