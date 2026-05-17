@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/maksym-nezhurin/gateway/compare/v1.0.1...v1.0.2) (2026-05-17)
+
+
+### Bug Fixes
+
+* add missing type definitions and update build process ([4addcb5](https://github.com/maksym-nezhurin/gateway/commit/4addcb5cd5bbb437bb8928f952bc261bf6d02f40))
+* **ci:** use GITHUB_TOKEN for semantic-release instead of GH_PAT. ([06920d3](https://github.com/maksym-nezhurin/gateway/commit/06920d335b35518663105bfa0f6d71528cce0c2e))
+* **ci:** use pnpm instead of npm ci in release workflow ([1775586](https://github.com/maksym-nezhurin/gateway/commit/1775586df5d63e9653577080f6067e00159cc0d2))
+
 ## [1.0.1](https://github.com/maksym-nezhurin/gateway/compare/v1.0.0...v1.0.1) (2025-05-25)
 
 
