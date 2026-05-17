@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/maksym-nezhurin/gateway/compare/v1.0.4...v1.0.5) (2026-05-17)
+
+
+### Bug Fixes
+
+* use compiled dist for production start on Render. ([2349276](https://github.com/maksym-nezhurin/gateway/commit/23492760b4832a00bd295b8e194e3d4de094296d))
+
 ## [1.0.4](https://github.com/maksym-nezhurin/gateway/compare/v1.0.3...v1.0.4) (2026-05-17)
 
 
