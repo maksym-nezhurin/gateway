@@ -156,7 +156,8 @@ fly deploy --app reelo-api
 Дозволені origins (`src/config/cors.config.ts`):
 
 - `http://localhost:3000` — client (Next.js)
-- `http://localhost:5173` — admin (Vite)
+- `http://localhost:3005` — admin (alternate dev port)
+- `http://localhost:5173` — admin (Vite default)
 - `https://autivo.pl`, `https://www.autivo.pl` — prod client
 - `https://admin-reelo.vercel.app`, `https://reelo-market.vercel.app`
 

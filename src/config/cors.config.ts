@@ -1,13 +1,13 @@
 import { CorsOptions } from 'cors';
 
 const DEFAULT_ORIGINS = [
-  'http://localhost:3000', // Next.js client
-  'http://localhost:5173', // Vite admin
+  'http://localhost:3000', // local backend dev
+  'http://localhost:3005', // Next.js client
+  'http://localhost:5173', // Vite admin (default)
   'https://autivo.pl',
   'https://www.autivo.pl',
   'https://admin-reelo.vercel.app',
-  'https://admin-liard-pi-71.vercel.app',
-  'https://reelo-market.vercel.app',
+  'https://autivo-market.vercel.app',
 ];
 
 function parseExtraOrigins(): string[] {
