@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/maksym-nezhurin/gateway/compare/v1.0.5...v1.0.6) (2026-05-30)
+
+
+### Bug Fixes
+
+* **cors:** allow autivo.pl and localhost:3000 for prod client launch. ([ee7a22a](https://github.com/maksym-nezhurin/gateway/commit/ee7a22a13e9e4ee97237205e950a599c9f7385c4))
+* **cors:** restore localhost:3005 for local dev. ([a7a81b4](https://github.com/maksym-nezhurin/gateway/commit/a7a81b46f76e39beed592ad21d972c6b5f960d74))
+
 ## [1.0.5](https://github.com/maksym-nezhurin/gateway/compare/v1.0.4...v1.0.5) (2026-05-17)
 
 
