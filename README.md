@@ -155,13 +155,14 @@ fly deploy --app reelo-api
 
 Дозволені origins (`src/config/cors.config.ts`):
 
-- `http://localhost:5173` — client (Next.js)
-- `http://localhost:3005` — admin
-- `https://admin-reelo.vercel.app`
-- `https://admin-liard-pi-71.vercel.app`
-- `https://reelo-market.vercel.app`
+- `http://localhost:3000` — client (Next.js)
+- `http://localhost:5173` — admin (Vite)
+- `https://autivo.pl`, `https://www.autivo.pl` — prod client
+- `https://admin-reelo.vercel.app`, `https://reelo-market.vercel.app`
 
-Новий frontend origin — додай у `cors.config.ts` і задеплой.
+Додаткові origins через env **`CORS_ORIGINS`** (comma-separated), напр. preview Vercel.
+
+Після змін — redeploy gateway на Render. Див. [`docs/F0_LAUNCH_RUNBOOK.md`](../../docs/F0_LAUNCH_RUNBOOK.md).
 
 ## Структура проєкту
 

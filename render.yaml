@@ -19,5 +19,8 @@ services:
         value: "https://car-service-jiwj.onrender.com"
       - key: JWT_SECRET
         value: "dev_access_secret"                    # Add your JWT secret
+      # Optional: comma-separated extra CORS origins (preview URLs)
+      # - key: CORS_ORIGINS
+      #   value: "https://your-preview.vercel.app"
       - key: NODE_TLS_REJECT_UNAUTHORIZED
         value: "0"
