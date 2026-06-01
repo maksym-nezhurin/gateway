@@ -22,7 +22,7 @@ function parseExtraOrigins(): string[] {
 export const corsOptions: CorsOptions = {
   origin: [...new Set([...DEFAULT_ORIGINS, ...parseExtraOrigins()])],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   optionsSuccessStatus: 200,
 };

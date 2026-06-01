@@ -7,9 +7,7 @@ export const garageProxy = createProxyMiddleware({
   changeOrigin: true,
   pathRewrite: { [`^${ROUTES.GARAGE}`]: '/api/garage' },
   onProxyReq: (proxyReq, req) => {
-    const userId =
-      (req as any).userId ??
-      (typeof req.headers['x-user-id'] === 'string' ? req.headers['x-user-id'] : undefined);
+    const userId = (req as { userId?: string }).userId;
     if (userId && !proxyReq.headersSent) {
       proxyReq.setHeader('x-user-id', userId);
     }
