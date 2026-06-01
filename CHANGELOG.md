@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/maksym-nezhurin/gateway/compare/v1.0.6...v1.0.7) (2026-06-01)
+
+
+### Bug Fixes
+
+* **security:** require JWT for private garage routes ([4b65a9c](https://github.com/maksym-nezhurin/gateway/commit/4b65a9c51a97c401eee16da7927fe0344babf1d1))
+
 ## [1.0.6](https://github.com/maksym-nezhurin/gateway/compare/v1.0.5...v1.0.6) (2026-05-30)
 
 
