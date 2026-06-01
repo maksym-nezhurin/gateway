@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/maksym-nezhurin/gateway/compare/v1.0.7...v1.0.8) (2026-06-01)
+
+
+### Bug Fixes
+
+* **auth:** align JWT secret with user-service access token ([013e1f3](https://github.com/maksym-nezhurin/gateway/commit/013e1f3dc96fd82a471a755ba6845c2a4c0025d7))
+
 ## [1.0.7](https://github.com/maksym-nezhurin/gateway/compare/v1.0.6...v1.0.7) (2026-06-01)
 
 
