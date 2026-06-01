@@ -6,5 +6,9 @@ export const config = {
   /** Optional Express/Keycloak auth (Fly) — monitored only, not proxied */
   expressAuthServiceUrl: process.env.EXPRESS_AUTH_SERVICE_URL || '',
   carServiceUrl: process.env.CAR_SERVICE_URL || 'http://localhost:3002',
-  jwtSecret: process.env.JWT_SECRET || 'default-secret-key',
+  /** Must match user-service JWT_ACCESS_SECRET (access token signing). */
+  jwtSecret:
+    process.env.JWT_SECRET ||
+    process.env.JWT_ACCESS_SECRET ||
+    'default-secret-key',
 };
