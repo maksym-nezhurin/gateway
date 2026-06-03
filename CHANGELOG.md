@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/maksym-nezhurin/gateway/compare/v1.0.8...v1.1.0) (2026-06-03)
+
+
+### Features
+
+* **gateway:** proxy /v1/community to user-service ([0daa7b2](https://github.com/maksym-nezhurin/gateway/commit/0daa7b258c09419b9e41def7e16a0f5e849ae339))
+
 ## [1.0.8](https://github.com/maksym-nezhurin/gateway/compare/v1.0.7...v1.0.8) (2026-06-01)
 
 
