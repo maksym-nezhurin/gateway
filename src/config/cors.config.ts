@@ -5,7 +5,8 @@ const DEFAULT_ORIGINS = [
   'http://localhost:3005', // Next.js client
   'http://localhost:5173', // Vite admin (default)
   'https://autivo.pl',
-  'https://www.autivo.pl',
+  'https://autivo.com.pl',
+  'https://www.autivo.com.pl',
   'https://admin-reelo.vercel.app',
   'https://autivo-market.vercel.app',
 ];
