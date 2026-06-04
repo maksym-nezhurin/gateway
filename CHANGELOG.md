@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/maksym-nezhurin/gateway/compare/v1.1.0...v1.1.1) (2026-06-04)
+
+
+### Bug Fixes
+
+* **health:** probe car-service at /health; drop autivo.pl from CORS ([182a893](https://github.com/maksym-nezhurin/gateway/commit/182a8935098dfc9749750b6596f12c76f2cb6eed))
+
 # [1.1.0](https://github.com/maksym-nezhurin/gateway/compare/v1.0.8...v1.1.0) (2026-06-03)
 
 
