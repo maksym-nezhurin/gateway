@@ -31,8 +31,7 @@ export function getMonitoredServices(): MonitoredServiceConfig[] {
   addService(services, {
     name: 'car',
     baseUrl: config.carServiceUrl,
-    healthPath: '/api',
-    httpOkOnly: true,
+    healthPath: '/health',
   });
 
   return services;
