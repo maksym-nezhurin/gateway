@@ -11,4 +11,11 @@ export const config = {
     process.env.JWT_SECRET ||
     process.env.JWT_ACCESS_SECRET ||
     'default-secret-key',
+  /**
+   * Attached to every proxied car-service request so car-service's admin routes can
+   * require it in addition to the role header — defense in depth in case car-service's
+   * own URL is ever reachable directly, bypassing this gateway's auth entirely. Must
+   * match car-service's GATEWAY_INTERNAL_SECRET. Empty in dev = header omitted.
+   */
+  internalGatewaySecret: process.env.GATEWAY_INTERNAL_SECRET || '',
 };
