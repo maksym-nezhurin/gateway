@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/maksym-nezhurin/gateway/compare/v1.1.1...v1.2.0) (2026-08-14)
+
+
+### Features
+
+* **cars:** auth-gate /v1/cars/* — strip spoofable headers, verify roles ([ac13a83](https://github.com/maksym-nezhurin/gateway/commit/ac13a83633a88f27cc3e63170c1ca37cf390d0c3))
+
 ## [1.1.1](https://github.com/maksym-nezhurin/gateway/compare/v1.1.0...v1.1.1) (2026-06-04)
 
 
