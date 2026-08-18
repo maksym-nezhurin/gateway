@@ -6,11 +6,17 @@ import { garageProxy } from '../services/garage.proxy';
 import { garageAuthMiddleware } from '../middleware/garage-auth.middleware';
 import { carsAuthMiddleware } from '../middleware/cars-auth.middleware';
 import { communityProxy } from '../services/community.proxy';
+import { companiesProxy, draftCompaniesProxy, partnersProxy } from '../services/b2b.proxy';
+import { adminProxy } from '../services/admin.proxy';
 
 const router = Router();
 
 router.use(ROUTES.AUTH, authProxy);
 router.use(ROUTES.COMMUNITY, communityProxy);
+router.use(ROUTES.COMPANIES, companiesProxy);
+router.use(ROUTES.DRAFT_COMPANIES, draftCompaniesProxy);
+router.use(ROUTES.PARTNERS, partnersProxy);
+router.use(ROUTES.ADMIN, adminProxy);
 router.use(ROUTES.CARS, carsAuthMiddleware, carProxy);
 router.use(ROUTES.GARAGE, garageAuthMiddleware, garageProxy);
 

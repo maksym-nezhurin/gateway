@@ -1,7 +1,11 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { Request } from 'express';
-import { isAdminCarsRoute, isProtectedCarsRoute } from './cars-auth.middleware';
+import {
+  isAdminCarsRoute,
+  isInternalCatalogExportRoute,
+  isProtectedCarsRoute,
+} from './cars-auth.middleware';
 
 function mockReq(method: string, path: string): Request {
   return { method, path } as Request;
@@ -19,9 +23,30 @@ describe('isAdminCarsRoute', () => {
   });
 });
 
+describe('isInternalCatalogExportRoute', () => {
+  it('matches community-seed export', () => {
+    assert.equal(
+      isInternalCatalogExportRoute(mockReq('GET', '/catalog/export/community-seed')),
+      true,
+    );
+  });
+
+  it('does not match other catalog routes', () => {
+    assert.equal(isInternalCatalogExportRoute(mockReq('GET', '/catalog/makes')), false);
+    assert.equal(isInternalCatalogExportRoute(mockReq('GET', '/catalog/generations')), false);
+  });
+});
+
 describe('isProtectedCarsRoute', () => {
   it('requires auth for /catalog/admin/*', () => {
     assert.equal(isProtectedCarsRoute(mockReq('PATCH', '/catalog/admin/generations/g1')), true);
+  });
+
+  it('requires auth for /catalog/export/*', () => {
+    assert.equal(
+      isProtectedCarsRoute(mockReq('GET', '/catalog/export/community-seed')),
+      true,
+    );
   });
 
   it('requires auth for GET /my', () => {
@@ -41,6 +66,7 @@ describe('isProtectedCarsRoute', () => {
   it('leaves catalog browsing public, including nested paths', () => {
     assert.equal(isProtectedCarsRoute(mockReq('GET', '/catalog')), false);
     assert.equal(isProtectedCarsRoute(mockReq('GET', '/catalog/makes')), false);
+    assert.equal(isProtectedCarsRoute(mockReq('GET', '/catalog/generations')), false);
     assert.equal(
       isProtectedCarsRoute(mockReq('GET', '/catalog/by-path/vw/golf/golf-vii')),
       false,

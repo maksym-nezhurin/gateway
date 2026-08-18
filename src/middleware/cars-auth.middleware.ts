@@ -7,13 +7,14 @@ export type VerifiedIdentity = { userId: string; roles: string[] };
 const ADMIN_ROLES = new Set(['ADMIN', 'SUPER_ADMIN']);
 
 /**
- * Ownership-scoped and admin car-service routes — everything else under /cars (catalog
+ * Ownership-scoped, admin, and ops catalog routes — everything else under /cars (catalog
  * browsing, brand/attribute lists, single-car reads) stays public. Path is relative to
  * the /v1/cars mount, matching how car-service's own controllers see it.
  */
 export function isProtectedCarsRoute(req: Pick<Request, 'method' | 'path'>): boolean {
   const path = req.path ?? '';
   if (isAdminCarsRoute(req)) return true;
+  if (isInternalCatalogExportRoute(req)) return true;
   if (path === '/my') return true;
   if (req.method === 'POST' && (path === '' || path === '/')) return true;
   if (
@@ -29,6 +30,17 @@ export function isProtectedCarsRoute(req: Pick<Request, 'method' | 'path'>): boo
 /** Requires ADMIN/SUPER_ADMIN on top of a valid token — currently just catalog moderation. */
 export function isAdminCarsRoute(req: Pick<Request, 'path'>): boolean {
   return (req.path ?? '').startsWith('/catalog/admin');
+}
+
+/**
+ * Full-tree community seed export. Gateway always attaches GATEWAY_INTERNAL_SECRET to
+ * proxied requests, so car-service's secret guard alone is not enough on this path —
+ * anonymous callers would still get the dump. Require a verified JWT (any user is fine;
+ * the dump is not user-scoped) so the export is not a public scrape surface.
+ * Ops seed script should hit car-service directly with the internal secret header.
+ */
+export function isInternalCatalogExportRoute(req: Pick<Request, 'path'>): boolean {
+  return (req.path ?? '').startsWith('/catalog/export');
 }
 
 function verifyBearer(req: Request): VerifiedIdentity | null {
@@ -57,7 +69,8 @@ function verifyBearer(req: Request): VerifiedIdentity | null {
  * car-service trusts x-user-id / x-user-roles verbatim from whatever hits it, so this is
  * the only place those headers may be set — always stripped first, then re-set only from
  * a verified JWT. Public routes (catalog browsing, single-car reads) work anonymously;
- * ownership routes (POST/PATCH/DELETE /cars, GET /cars/my) require a valid token;
+ * ownership routes (POST/PATCH/DELETE /cars, GET /cars/my) and
+ * /cars/catalog/export/* require a valid token;
  * /cars/catalog/admin/* additionally requires the ADMIN or SUPER_ADMIN role.
  */
 export function carsAuthMiddleware(req: Request, res: Response, next: NextFunction) {
