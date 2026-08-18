@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/maksym-nezhurin/gateway/compare/v1.3.0...v1.4.0) (2026-08-18)
+
+
+### Features
+
+* **admin:** compose overview from auth-service + car-service ([29c010e](https://github.com/maksym-nezhurin/gateway/commit/29c010ecfb0b26d6d737d7c499fb52f1d6fd08ff))
+
 # [1.3.0](https://github.com/maksym-nezhurin/gateway/compare/v1.2.0...v1.3.0) (2026-08-18)
 
 
