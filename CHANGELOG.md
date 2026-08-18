@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/maksym-nezhurin/gateway/compare/v1.2.0...v1.3.0) (2026-08-18)
+
+
+### Features
+
+* **b2b:** proxy companies/draft-companies/partners/admin to user-service ([66f4fa3](https://github.com/maksym-nezhurin/gateway/commit/66f4fa355fc029fd7d6d9fe6c809a99ad87fb6ad))
+
 # [1.2.0](https://github.com/maksym-nezhurin/gateway/compare/v1.1.1...v1.2.0) (2026-08-14)
 
 
