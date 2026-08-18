@@ -8,8 +8,15 @@ export const garageProxy = createProxyMiddleware({
   pathRewrite: { [`^${ROUTES.GARAGE}`]: '/api/garage' },
   onProxyReq: (proxyReq, req) => {
     const userId = (req as { userId?: string }).userId;
-    if (userId && !proxyReq.headersSent) {
+    if (proxyReq.headersSent) {
+      fixRequestBody(proxyReq, req);
+      return;
+    }
+    if (userId) {
       proxyReq.setHeader('x-user-id', userId);
+    }
+    if (config.internalGatewaySecret) {
+      proxyReq.setHeader('x-internal-gateway-secret', config.internalGatewaySecret);
     }
     fixRequestBody(proxyReq, req);
   },
