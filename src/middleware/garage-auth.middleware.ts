@@ -10,8 +10,14 @@ export function isPublicGarageRoute(req: Request): boolean {
   return path === '/public-listings' || path.startsWith('/public-listings/');
 }
 
-function stripClientUserId(req: Request): void {
+/**
+ * car-service trusts identity headers verbatim, and the garage proxy forwards client
+ * headers as-is. x-user-id is re-set from the verified token; x-user-roles is never
+ * set for garage routes, so a client-sent value must not reach car-service either.
+ */
+export function stripClientIdentityHeaders(req: Pick<Request, 'headers'>): void {
   delete req.headers['x-user-id'];
+  delete req.headers['x-user-roles'];
 }
 
 /**
@@ -19,7 +25,7 @@ function stripClientUserId(req: Request): void {
  * userId for downstream car service is set only from verified token (jwtMiddleware).
  */
 export function garageAuthMiddleware(req: Request, res: Response, next: NextFunction) {
-  stripClientUserId(req);
+  stripClientIdentityHeaders(req);
 
   if (isPublicGarageRoute(req)) {
     return next();
