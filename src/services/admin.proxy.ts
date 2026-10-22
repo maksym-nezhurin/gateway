@@ -1,6 +1,7 @@
 import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { ROUTES } from '../constants/routes';
 import { config } from '../config/env';
+import { respondProxyUnavailable } from './proxy-error';
 
 /** Admin panel API: /api/v1/admin/* */
 export const adminProxy = createProxyMiddleware({
@@ -14,4 +15,5 @@ export const adminProxy = createProxyMiddleware({
   onProxyReq: (proxyReq, req) => {
     fixRequestBody(proxyReq, req);
   },
+  onError: respondProxyUnavailable('Admin', config.authServiceUrl),
 });

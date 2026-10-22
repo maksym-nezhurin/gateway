@@ -1,6 +1,7 @@
 import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { ROUTES } from '../constants/routes';
 import { config } from '../config/env';
+import { respondProxyUnavailable } from './proxy-error';
 
 export const carProxy = createProxyMiddleware({
   target: config.carServiceUrl,
@@ -24,4 +25,5 @@ export const carProxy = createProxyMiddleware({
     }
     fixRequestBody(proxyReq, req);
   },
+  onError: respondProxyUnavailable('Car', config.carServiceUrl),
 });
