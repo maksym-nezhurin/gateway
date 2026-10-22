@@ -27,9 +27,15 @@ export function isProtectedCarsRoute(req: Pick<Request, 'method' | 'path'>): boo
   return false;
 }
 
-/** Requires ADMIN/SUPER_ADMIN on top of a valid token — currently just catalog moderation. */
+/**
+ * Requires ADMIN/SUPER_ADMIN on top of a valid token: catalog moderation (/catalog/admin/*)
+ * and service-history moderation (/admin/*, e.g. /admin/service-history/change-requests).
+ */
 export function isAdminCarsRoute(req: Pick<Request, 'path'>): boolean {
-  return (req.path ?? '').startsWith('/catalog/admin');
+  const path = req.path ?? '';
+  return (
+    path.startsWith('/catalog/admin') || path === '/admin' || path.startsWith('/admin/')
+  );
 }
 
 /**
@@ -71,7 +77,7 @@ function verifyBearer(req: Request): VerifiedIdentity | null {
  * a verified JWT. Public routes (catalog browsing, single-car reads) work anonymously;
  * ownership routes (POST/PATCH/DELETE /cars, GET /cars/my) and
  * /cars/catalog/export/* require a valid token;
- * /cars/catalog/admin/* additionally requires the ADMIN or SUPER_ADMIN role.
+ * /cars/catalog/admin/* and /cars/admin/* additionally require the ADMIN or SUPER_ADMIN role.
  */
 export function carsAuthMiddleware(req: Request, res: Response, next: NextFunction) {
   delete req.headers['x-user-id'];

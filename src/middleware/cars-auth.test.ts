@@ -12,14 +12,31 @@ function mockReq(method: string, path: string): Request {
 }
 
 describe('isAdminCarsRoute', () => {
-  it('matches only /catalog/admin/*', () => {
+  it('matches /catalog/admin/*', () => {
     assert.equal(isAdminCarsRoute(mockReq('PATCH', '/catalog/admin/generations/g1')), true);
     assert.equal(isAdminCarsRoute(mockReq('PATCH', '/catalog/admin/trims/t1')), true);
+  });
+
+  it('matches service-history moderation under /admin/*', () => {
+    assert.equal(
+      isAdminCarsRoute(mockReq('GET', '/admin/service-history/change-requests')),
+      true,
+    );
+    assert.equal(
+      isAdminCarsRoute(mockReq('POST', '/admin/service-history/change-requests/r1/approve')),
+      true,
+    );
+    assert.equal(isAdminCarsRoute(mockReq('GET', '/admin')), true);
   });
 
   it('does not match plain catalog browsing', () => {
     assert.equal(isAdminCarsRoute(mockReq('GET', '/catalog/makes')), false);
     assert.equal(isAdminCarsRoute(mockReq('GET', '/catalog')), false);
+  });
+
+  it('does not match paths that only start with the letters "admin"', () => {
+    assert.equal(isAdminCarsRoute(mockReq('GET', '/administrator')), false);
+    assert.equal(isAdminCarsRoute(mockReq('GET', '/admins/1')), false);
   });
 });
 
@@ -40,6 +57,17 @@ describe('isInternalCatalogExportRoute', () => {
 describe('isProtectedCarsRoute', () => {
   it('requires auth for /catalog/admin/*', () => {
     assert.equal(isProtectedCarsRoute(mockReq('PATCH', '/catalog/admin/generations/g1')), true);
+  });
+
+  it('requires auth for /admin/*', () => {
+    assert.equal(
+      isProtectedCarsRoute(mockReq('GET', '/admin/service-history/change-requests')),
+      true,
+    );
+    assert.equal(
+      isProtectedCarsRoute(mockReq('POST', '/admin/service-history/change-requests/r1/reject')),
+      true,
+    );
   });
 
   it('requires auth for /catalog/export/*', () => {
