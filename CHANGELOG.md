@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/maksym-nezhurin/gateway/compare/v1.4.0...v1.5.0) (2026-10-22)
+
+
+### Bug Fixes
+
+* **gateway:** say why a proxied service is unavailable instead of always 'waking up' ([a76db3a](https://github.com/maksym-nezhurin/gateway/commit/a76db3adcaee869671108a6ccfa5f88169b7cb32))
+* **gateway:** use the shared unavailable handler for every proxy ([e1ac0ca](https://github.com/maksym-nezhurin/gateway/commit/e1ac0cae5822e6fddc39320f4754326de0eee0a8))
+
+
+### Features
+
+* **cars:** require admin role for /v1/cars/admin/* (AUT-48) ([738f859](https://github.com/maksym-nezhurin/gateway/commit/738f85980ff90e8ee0506aa9d525c1eb8bbea20e))
+
 # [1.4.0](https://github.com/maksym-nezhurin/gateway/compare/v1.3.0...v1.4.0) (2026-08-18)
 
 
