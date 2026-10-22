@@ -1,6 +1,7 @@
 import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 import { ROUTES } from '../constants/routes';
 import { config } from '../config/env';
+import { respondProxyUnavailable } from './proxy-error';
 
 /** Companies: /api/v1/companies/* */
 export const companiesProxy = createProxyMiddleware({
@@ -14,6 +15,7 @@ export const companiesProxy = createProxyMiddleware({
   onProxyReq: (proxyReq, req) => {
     fixRequestBody(proxyReq, req);
   },
+  onError: respondProxyUnavailable('Companies', config.authServiceUrl),
 });
 
 /** Draft companies (garage business picker): /api/v1/draft-companies/* */
@@ -28,6 +30,7 @@ export const draftCompaniesProxy = createProxyMiddleware({
   onProxyReq: (proxyReq, req) => {
     fixRequestBody(proxyReq, req);
   },
+  onError: respondProxyUnavailable('Draft companies', config.authServiceUrl),
 });
 
 /** Partners catalog + admin listings: /api/v1/partners/* */
@@ -42,4 +45,5 @@ export const partnersProxy = createProxyMiddleware({
   onProxyReq: (proxyReq, req) => {
     fixRequestBody(proxyReq, req);
   },
+  onError: respondProxyUnavailable('Partners', config.authServiceUrl),
 });
