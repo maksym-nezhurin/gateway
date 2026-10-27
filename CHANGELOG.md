@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/maksym-nezhurin/gateway/compare/v1.5.0...v1.6.0) (2026-10-27)
+
+
+### Features
+
+* **garage:** resolve workshop membership for /v1/garage/partner/* (AUT-81) ([fb628b8](https://github.com/maksym-nezhurin/gateway/commit/fb628b883f60ae0cf642d162c8f2732c312af507))
+
 # [1.5.0](https://github.com/maksym-nezhurin/gateway/compare/v1.4.0...v1.5.0) (2026-10-22)
 
 
