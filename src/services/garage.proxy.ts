@@ -16,6 +16,11 @@ export const garageProxy = createProxyMiddleware({
     if (userId) {
       proxyReq.setHeader('x-user-id', userId);
     }
+    // Workshop routes only (set by garageAuthMiddleware from user-service, AUT-81).
+    const organizationIds = (req as { organizationIds?: string[] }).organizationIds;
+    if (organizationIds?.length) {
+      proxyReq.setHeader('x-organization-ids', organizationIds.join(','));
+    }
     if (config.internalGatewaySecret) {
       proxyReq.setHeader('x-internal-gateway-secret', config.internalGatewaySecret);
     }
